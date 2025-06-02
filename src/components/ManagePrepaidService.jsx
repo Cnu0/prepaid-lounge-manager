@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import LoadingSpinner from './LoadingSpinner';
 import { toast } from '../hooks/use-toast';
@@ -149,7 +148,7 @@ const ManagePrepaidService = () => {
 
   return (
     <>
-      {/* Bootstrap CSS */}
+      {/* Bootstrap CSS and Icons */}
       <link 
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
         rel="stylesheet" 
@@ -162,78 +161,78 @@ const ManagePrepaidService = () => {
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
       ></script>
 
-      <div className="container-fluid py-4" style={{ backgroundColor: '#f8f9fa', minHeight: '100vh' }}>
-        {/* Header */}
-        <div className="row mb-4">
-          <div className="col-12">
-            <div className="card border-0 shadow-sm">
-              <div className="card-body bg-primary text-white" style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }}>
-                <div className="d-flex align-items-center">
-                  <i className="fas fa-credit-card fa-2x me-3"></i>
-                  <div>
-                    <h1 className="mb-1">Prepaid Services Management</h1>
-                    <p className="mb-0 opacity-75">Manage customer prepaid accounts and lounge settings</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <style>
+        {`
+          .custom-primary {
+            background-color: #347aeb !important;
+            border-color: #347aeb !important;
+          }
+          .text-custom-primary {
+            color: #347aeb !important;
+          }
+          .border-custom-primary {
+            border-color: #347aeb !important;
+          }
+          .btn-custom-primary {
+            background-color: #347aeb;
+            border-color: #347aeb;
+            color: white;
+          }
+          .btn-custom-primary:hover {
+            background-color: #2c6ad5;
+            border-color: #2c6ad5;
+          }
+          .btn-outline-custom-primary {
+            color: #347aeb;
+            border-color: #347aeb;
+            background-color: transparent;
+          }
+          .btn-outline-custom-primary:hover {
+            background-color: #347aeb;
+            border-color: #347aeb;
+            color: white;
+          }
+          .card {
+            border: none;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+            transition: all 0.3s ease;
+          }
+          .card:hover {
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+          }
+          .stats-icon {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(52, 122, 235, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+          }
+        `}
+      </style>
 
-        {/* Lounge Info Card */}
-        {lounge && (
+      <div className="min-vh-100" style={{ backgroundColor: '#f8f9fa' }}>
+        <div className="container-fluid py-4">
+          {/* Header Section */}
           <div className="row mb-4">
             <div className="col-12">
-              <div className="card border-0 shadow-sm">
-                <div className="card-header bg-white border-bottom">
-                  <div className="d-flex justify-content-between align-items-center">
-                    <div>
-                      <h5 className="mb-0 text-primary">
-                        <i className="fas fa-cog me-2"></i>
-                        Lounge Settings
-                      </h5>
+              <div className="card">
+                <div className="card-body custom-primary text-white py-4">
+                  <div className="row align-items-center">
+                    <div className="col-md-8">
+                      <h1 className="h3 mb-2 fw-bold">
+                        <i className="fas fa-credit-card me-3"></i>
+                        Prepaid Services Management
+                      </h1>
+                      <p className="mb-0 opacity-75">Manage customer prepaid accounts and lounge settings</p>
                     </div>
-                    <button 
-                      className="btn btn-outline-primary btn-sm"
-                      onClick={handleEditClick}
-                      style={{ transition: 'all 0.3s ease' }}
-                    >
-                      <i className="fas fa-edit me-1"></i>
-                      Edit Settings
-                    </button>
-                  </div>
-                </div>
-                <div className="card-body">
-                  <div className="row">
-                    <div className="col-md-4">
-                      <div className="d-flex align-items-center mb-2">
-                        <i className="fas fa-building text-primary me-2"></i>
-                        <strong>Lounge:</strong>
-                        <span className="ms-2">{lounge.loungeName}</span>
-                      </div>
-                    </div>
-                    <div className="col-md-4">
-                      <div className="d-flex align-items-center mb-2">
-                        <i className="fas fa-percentage text-success me-2"></i>
-                        <strong>Discount:</strong>
-                        <span className="badge bg-success ms-2">{lounge.discountPercentage}%</span>
-                      </div>
-                    </div>
-                    <div className="col-md-4">
-                      <div className="d-flex align-items-center mb-2">
-                        <i className="fas fa-dollar-sign text-warning me-2"></i>
-                        <strong>Min Top-Up:</strong>
-                        <span className="badge bg-warning text-dark ms-2">${lounge.minimumTopUp}</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="row mt-2">
-                    <div className="col-12">
-                      <div className="d-flex align-items-start">
-                        <i className="fas fa-info-circle text-info me-2 mt-1"></i>
-                        <div>
-                          <strong>Additional Info:</strong>
-                          <p className="mb-0 ms-2 text-muted">{lounge.additionalInfo}</p>
+                    <div className="col-md-4 text-md-end mt-3 mt-md-0">
+                      <div className="d-flex justify-content-md-end">
+                        <div className="text-center">
+                          <div className="h4 mb-1">{users.length}</div>
+                          <small>Active Accounts</small>
                         </div>
                       </div>
                     </div>
@@ -242,165 +241,197 @@ const ManagePrepaidService = () => {
               </div>
             </div>
           </div>
-        )}
 
-        {/* Statistics Cards */}
-        <div className="row mb-4">
-          <div className="col-md-4 mb-3">
-            <div className="card border-0 shadow-sm h-100">
-              <div className="card-body text-center">
-                <div className="d-flex align-items-center justify-content-center mb-3">
-                  <div className="rounded-circle d-flex align-items-center justify-content-center" 
-                       style={{ width: '60px', height: '60px', backgroundColor: '#e3f2fd' }}>
-                    <i className="fas fa-users fa-2x text-primary"></i>
-                  </div>
-                </div>
-                <h2 className="display-4 mb-2 text-primary">{users.length}</h2>
-                <p className="text-muted mb-0">Total Prepaids</p>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4 mb-3">
-            <div className="card border-0 shadow-sm h-100">
-              <div className="card-body text-center">
-                <div className="d-flex align-items-center justify-content-center mb-3">
-                  <div className="rounded-circle d-flex align-items-center justify-content-center" 
-                       style={{ width: '60px', height: '60px', backgroundColor: '#e8f5e8' }}>
-                    <i className="fas fa-money-bill-wave fa-2x text-success"></i>
-                  </div>
-                </div>
-                <h2 className="display-4 mb-2 text-success">
-                  ${users.reduce((sum, user) => sum + parseFloat(user.prepaidAmount || 0), 0).toFixed(2)}
-                </h2>
-                <p className="text-muted mb-0">Total Prepaid Value</p>
-              </div>
-            </div>
-          </div>
-          <div className="col-md-4 mb-3">
-            <div className="card border-0 shadow-sm h-100">
-              <div className="card-body text-center">
-                <div className="d-flex align-items-center justify-content-center mb-3">
-                  <div className="rounded-circle d-flex align-items-center justify-content-center" 
-                       style={{ width: '60px', height: '60px', backgroundColor: '#fff3e0' }}>
-                    <i className="fas fa-wallet fa-2x text-warning"></i>
-                  </div>
-                </div>
-                <h2 className="display-4 mb-2 text-warning">
-                  ${users.reduce((sum, user) => sum + parseFloat(user.remainingBalance || 0), 0).toFixed(2)}
-                </h2>
-                <p className="text-muted mb-0">Total Remaining Value</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Prepaid List */}
-        <div className="row">
-          <div className="col-12">
-            <div className="card border-0 shadow-sm">
-              <div className="card-header bg-white border-bottom">
-                <h5 className="mb-0 text-primary">
-                  <i className="fas fa-list me-2"></i>
-                  Prepaid Customers
-                </h5>
-              </div>
-              <div className="card-body p-0">
-                {users.length === 0 ? (
-                  <div className="p-4">
-                    <div className="alert alert-info mb-0" role="alert">
-                      <i className="fas fa-info-circle me-2"></i>
-                      No prepaid users found.
+          {/* Lounge Settings Card */}
+          {lounge && (
+            <div className="row mb-4">
+              <div className="col-12">
+                <div className="card">
+                  <div className="card-header bg-white border-bottom-0 py-3">
+                    <div className="row align-items-center">
+                      <div className="col">
+                        <h5 className="mb-0 text-custom-primary fw-semibold">
+                          <i className="fas fa-cog me-2"></i>
+                          Lounge Settings - {lounge.loungeName}
+                        </h5>
+                      </div>
+                      <div className="col-auto">
+                        <button 
+                          className="btn btn-outline-custom-primary btn-sm"
+                          onClick={handleEditClick}
+                        >
+                          <i className="fas fa-edit me-2"></i>
+                          Edit Settings
+                        </button>
+                      </div>
                     </div>
                   </div>
-                ) : (
-                  <div className="table-responsive">
-                    <table className="table table-hover mb-0">
-                      <thead style={{ backgroundColor: '#f8f9fa' }}>
-                        <tr>
-                          <th className="border-0 text-muted fw-semibold">
-                            <i className="fas fa-hashtag me-1"></i>Prepaid ID
-                          </th>
-                          <th className="border-0 text-muted fw-semibold">
-                            <i className="fas fa-user me-1"></i>Customer
-                          </th>
-                          <th className="border-0 text-muted fw-semibold">
-                            <i className="fas fa-credit-card me-1"></i>Prepaid Amount
-                          </th>
-                          <th className="border-0 text-muted fw-semibold">
-                            <i className="fas fa-coins me-1"></i>Remaining Balance
-                          </th>
-                          <th className="border-0 text-muted fw-semibold">
-                            <i className="fas fa-info me-1"></i>Status
-                          </th>
-                          <th className="border-0 text-muted fw-semibold">
-                            <i className="fas fa-cogs me-1"></i>Actions
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {users.map((user, index) => (
-                          <tr key={user.prepaidId} style={{ 
-                            transition: 'all 0.3s ease',
-                            backgroundColor: index % 2 === 0 ? '#fff' : '#fafafa'
-                          }}>
-                            <td className="align-middle">
-                              <span className="badge bg-primary">#{user.prepaidId}</span>
-                            </td>
-                            <td className="align-middle">
-                              <div>
-                                <div className="fw-semibold text-dark">{user.userName}</div>
-                                <small className="text-muted">
-                                  <i className="fas fa-id-badge me-1"></i>
-                                  User #{user.userId} • Lounge #{user.loungeId}
-                                </small>
-                              </div>
-                            </td>
-                            <td className="align-middle">
-                              <span className="fw-bold text-success">${user.prepaidAmount.toFixed(2)}</span>
-                            </td>
-                            <td className="align-middle">
-                              <span className={`fw-bold ${user.remainingBalance > 0 ? 'text-primary' : 'text-danger'}`}>
-                                ${user.remainingBalance.toFixed(2)}
-                              </span>
-                            </td>
-                            <td className="align-middle">
-                              {getStatusBadge(user.status)}
-                            </td>
-                            <td className="align-middle">
-                              <button
-                                className="btn btn-outline-primary btn-sm"
-                                onClick={() =>
-                                  toast({
-                                    title: 'Customer Details',
-                                    description: `Viewing details for ${user.userName}`,
-                                  })
-                                }
-                                style={{ transition: 'all 0.3s ease' }}
-                              >
-                                <i className="fas fa-eye me-1"></i>
-                                View Details
-                              </button>
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
+                  <div className="card-body">
+                    <div className="row g-4">
+                      <div className="col-md-4">
+                        <div className="text-center p-3 rounded" style={{ backgroundColor: '#f8f9fa' }}>
+                          <i className="fas fa-percentage text-custom-primary fs-4 mb-2"></i>
+                          <div className="fw-bold">Discount Rate</div>
+                          <div className="h5 text-custom-primary mb-0">{lounge.discountPercentage}%</div>
+                        </div>
+                      </div>
+                      <div className="col-md-4">
+                        <div className="text-center p-3 rounded" style={{ backgroundColor: '#f8f9fa' }}>
+                          <i className="fas fa-dollar-sign text-custom-primary fs-4 mb-2"></i>
+                          <div className="fw-bold">Minimum Top-Up</div>
+                          <div className="h5 text-custom-primary mb-0">${lounge.minimumTopUp}</div>
+                        </div>
+                      </div>
+                      <div className="col-md-4">
+                        <div className="text-center p-3 rounded" style={{ backgroundColor: '#f8f9fa' }}>
+                          <i className="fas fa-info-circle text-custom-primary fs-4 mb-2"></i>
+                          <div className="fw-bold">Status</div>
+                          <div className="h5 text-success mb-0">Active</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="mt-3">
+                      <small className="text-muted">
+                        <strong>Additional Info:</strong> {lounge.additionalInfo}
+                      </small>
+                    </div>
                   </div>
-                )}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Statistics Cards */}
+          <div className="row mb-4 g-4">
+            <div className="col-lg-4">
+              <div className="card h-100">
+                <div className="card-body text-center py-4">
+                  <div className="stats-icon">
+                    <i className="fas fa-users text-custom-primary fs-3"></i>
+                  </div>
+                  <h3 className="display-6 mb-1 text-custom-primary fw-bold">{users.length}</h3>
+                  <p className="text-muted mb-0">Total Prepaid Accounts</p>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4">
+              <div className="card h-100">
+                <div className="card-body text-center py-4">
+                  <div className="stats-icon">
+                    <i className="fas fa-wallet text-custom-primary fs-3"></i>
+                  </div>
+                  <h3 className="display-6 mb-1 text-custom-primary fw-bold">
+                    ${users.reduce((sum, user) => sum + parseFloat(user.prepaidAmount || 0), 0).toFixed(2)}
+                  </h3>
+                  <p className="text-muted mb-0">Total Prepaid Value</p>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-4">
+              <div className="card h-100">
+                <div className="card-body text-center py-4">
+                  <div className="stats-icon">
+                    <i className="fas fa-coins text-custom-primary fs-3"></i>
+                  </div>
+                  <h3 className="display-6 mb-1 text-custom-primary fw-bold">
+                    ${users.reduce((sum, user) => sum + parseFloat(user.remainingBalance || 0), 0).toFixed(2)}
+                  </h3>
+                  <p className="text-muted mb-0">Remaining Balance</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Customer List */}
+          <div className="row">
+            <div className="col-12">
+              <div className="card">
+                <div className="card-header bg-white border-bottom-0 py-3">
+                  <h5 className="mb-0 text-custom-primary fw-semibold">
+                    <i className="fas fa-list me-2"></i>
+                    Prepaid Customers
+                  </h5>
+                </div>
+                <div className="card-body p-0">
+                  {users.length === 0 ? (
+                    <div className="p-4 text-center">
+                      <i className="fas fa-users text-muted fs-1 mb-3"></i>
+                      <h5 className="text-muted">No prepaid customers found</h5>
+                      <p className="text-muted">Customer data will appear here once available.</p>
+                    </div>
+                  ) : (
+                    <div className="table-responsive">
+                      <table className="table table-hover mb-0">
+                        <thead style={{ backgroundColor: '#f8f9fa' }}>
+                          <tr>
+                            <th className="border-0 py-3 text-muted fw-semibold">Customer</th>
+                            <th className="border-0 py-3 text-muted fw-semibold">Prepaid Amount</th>
+                            <th className="border-0 py-3 text-muted fw-semibold">Remaining Balance</th>
+                            <th className="border-0 py-3 text-muted fw-semibold">Status</th>
+                            <th className="border-0 py-3 text-muted fw-semibold">Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {users.map((user) => (
+                            <tr key={user.prepaidId}>
+                              <td className="py-3">
+                                <div className="d-flex align-items-center">
+                                  <div className="rounded-circle d-flex align-items-center justify-content-center me-3" 
+                                       style={{ width: '40px', height: '40px', backgroundColor: 'rgba(52, 122, 235, 0.1)' }}>
+                                    <i className="fas fa-user text-custom-primary"></i>
+                                  </div>
+                                  <div>
+                                    <div className="fw-semibold">{user.userName}</div>
+                                    <small className="text-muted">ID: {user.prepaidId} • Lounge: {user.loungeId}</small>
+                                  </div>
+                                </div>
+                              </td>
+                              <td className="py-3">
+                                <span className="fw-bold text-success">${user.prepaidAmount.toFixed(2)}</span>
+                              </td>
+                              <td className="py-3">
+                                <span className={`fw-bold ${user.remainingBalance > 0 ? 'text-custom-primary' : 'text-danger'}`}>
+                                  ${user.remainingBalance.toFixed(2)}
+                                </span>
+                              </td>
+                              <td className="py-3">
+                                {getStatusBadge(user.status)}
+                              </td>
+                              <td className="py-3">
+                                <button
+                                  className="btn btn-outline-custom-primary btn-sm"
+                                  onClick={() =>
+                                    toast({
+                                      title: 'Customer Details',
+                                      description: `Viewing details for ${user.userName}`,
+                                    })
+                                  }
+                                >
+                                  <i className="fas fa-eye me-1"></i>
+                                  View
+                                </button>
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Modal for editing lounge info */}
+        {/* Edit Modal */}
         {showModal && (
           <div className="modal fade show d-block" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
-            <div className="modal-dialog modal-lg">
-              <div className="modal-content border-0 shadow">
-                <div className="modal-header bg-primary text-white">
-                  <h5 className="modal-title">
+            <div className="modal-dialog modal-lg modal-dialog-centered">
+              <div className="modal-content border-0 shadow-lg">
+                <div className="modal-header custom-primary text-white border-0">
+                  <h5 className="modal-title fw-semibold">
                     <i className="fas fa-edit me-2"></i>
-                    Edit Lounge #{selectedLounge?.loungeId}
+                    Edit Lounge Settings
                   </h5>
                   <button 
                     type="button" 
@@ -410,64 +441,63 @@ const ManagePrepaidService = () => {
                 </div>
                 <div className="modal-body p-4">
                   <form>
-                    <div className="row">
-                      <div className="col-md-6 mb-3">
-                        <label className="form-label fw-semibold">
-                          <i className="fas fa-percentage text-primary me-2"></i>
+                    <div className="row g-3">
+                      <div className="col-md-6">
+                        <label className="form-label fw-semibold text-custom-primary">
+                          <i className="fas fa-percentage me-2"></i>
                           Discount Percentage
                         </label>
                         <input
                           type="number"
-                          className="form-control"
+                          className="form-control border-custom-primary"
                           name="discountPercentage"
                           value={form.discountPercentage}
                           onChange={handleInputChange}
-                          placeholder="Enter discount percentage"
+                          placeholder="Enter discount %"
                         />
                       </div>
-                      <div className="col-md-6 mb-3">
-                        <label className="form-label fw-semibold">
-                          <i className="fas fa-dollar-sign text-primary me-2"></i>
+                      <div className="col-md-6">
+                        <label className="form-label fw-semibold text-custom-primary">
+                          <i className="fas fa-dollar-sign me-2"></i>
                           Minimum Top-Up
                         </label>
                         <input
                           type="number"
-                          className="form-control"
+                          className="form-control border-custom-primary"
                           name="minimumTopUp"
                           value={form.minimumTopUp}
                           onChange={handleInputChange}
-                          placeholder="Enter minimum top-up amount"
+                          placeholder="Enter minimum amount"
+                        />
+                      </div>
+                      <div className="col-12">
+                        <label className="form-label fw-semibold text-custom-primary">
+                          <i className="fas fa-info-circle me-2"></i>
+                          Additional Information
+                        </label>
+                        <textarea
+                          className="form-control border-custom-primary"
+                          rows={4}
+                          name="additionalInfo"
+                          value={form.additionalInfo}
+                          onChange={handleInputChange}
+                          placeholder="Enter additional information"
                         />
                       </div>
                     </div>
-                    <div className="mb-3">
-                      <label className="form-label fw-semibold">
-                        <i className="fas fa-info-circle text-primary me-2"></i>
-                        Additional Information
-                      </label>
-                      <textarea
-                        className="form-control"
-                        rows={4}
-                        name="additionalInfo"
-                        value={form.additionalInfo}
-                        onChange={handleInputChange}
-                        placeholder="Enter additional information about the lounge"
-                      />
-                    </div>
                   </form>
                 </div>
-                <div className="modal-footer bg-light">
+                <div className="modal-footer bg-light border-0">
                   <button 
                     type="button" 
                     className="btn btn-secondary"
                     onClick={() => setShowModal(false)}
                   >
-                    <i className="fas fa-times me-1"></i>
                     Cancel
                   </button>
                   <button 
                     type="button" 
-                    className="btn btn-primary"
+                    className="btn btn-custom-primary"
                     onClick={handleSave} 
                     disabled={mockLoading}
                   >
@@ -478,7 +508,7 @@ const ManagePrepaidService = () => {
                       </>
                     ) : (
                       <>
-                        <i className="fas fa-save me-1"></i>
+                        <i className="fas fa-save me-2"></i>
                         Save Changes
                       </>
                     )}
